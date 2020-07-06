@@ -119,7 +119,7 @@ if (civilStatus === "married") {
 }*/
 
 //Bolean logic
-var firstName = "John";
+/*var firstName = "John";
 var age = 20;
 
 if (age < 13) {
@@ -130,11 +130,11 @@ if (age < 13) {
   console.log(firstName + " is a young man ");
 } else {
   console.log(firstName + " is a man ");
-}
+}*/
 
 //Ternary operators
 
-var name = "Alex";
+/*var name = "Alex";
 var ageAlex = 20;
 
 ageAlex >= 18
@@ -207,10 +207,10 @@ if (
   );
 } else {
   console.log(" Draw ", averageScoreJohn, averageScoreMike);
-}
+}*/
 
 //Challenge No 3
-function tipCalculator(bill) {
+/*function tipCalculator(bill) {
   var percentage;
   if (bill < 50) {
     percentage = 0.2;
@@ -231,10 +231,10 @@ var tips = [
 console.log(tips);
 
 var totalBills = [tips[0] + bills[0], tips[1] + bills[1], tips[2] + bills[2]];
-console.log(totalBills);
+console.log(totalBills);*/
 
 //Challenge No 4
-var john = {
+/*var john = {
   firstName: "John",
   height: 1.8,
   mass: 75,
@@ -258,4 +258,85 @@ if (john.calcBmi() > mark.calcBmi()) {
   console.log(john.firstName + " has bigger Bmi " + john.Bmi);
 } else if (mark.calcBmi() > john.calcBmi()) {
   console.log(mark.firstName + " has bigger Bmi " + mark.Bmi);
-} else console.log(" Bmi are same ");
+} else console.log(" Bmi are same ");*/
+
+//Coding challenge No 5
+var familyJohn = {
+  fullName: "John Smith",
+  bills: [0, 125, 48, 268, 180, 42],
+  calcTips: function () {
+    this.tips = [];
+    this.finalValue = [];
+
+    for (var i = 0; i < this.bills.length; i++) {
+      var percentage;
+      var bill = this.bills[i];
+
+      if (bill < 50) {
+        percentage = 0.2;
+      } else if (bill > 50 && bill < 150) {
+        pecentage = 0.15;
+      } else {
+        percentage = 0.1;
+      }
+
+      this.tips[i] = bill * percentage;
+      this.finalValue[i] = bill + bill * percentage;
+    }
+  },
+};
+
+var familyMark = {
+  fullName: "Mark Jones",
+  bills: [77, 375, 110, 45],
+  calcTips: function () {
+    this.tips = [];
+    this.finalValue = [];
+
+    for (var i = 0; i < this.bills.length; i++) {
+      var percentage;
+      var bill = this.bills[i];
+
+      if (bill < 100) {
+        percentage = 0.2;
+      } else if (bill > 100 && bill < 300) {
+        pecentage = 0.1;
+      } else {
+        percentage = 0.25;
+      }
+
+      this.tips[i] = bill * percentage;
+      this.finalValue[i] = bill + bill * percentage;
+    }
+  },
+};
+
+function calcAverage(tips) {
+  var sum = 0;
+  for (var i = 0; i < tips.length; i++) {
+    sum = sum + tips[i];
+  }
+  return sum / tips.length;
+}
+
+familyJohn.calcTips();
+familyMark.calcTips();
+console.log(familyJohn, familyMark);
+
+familyJohn.average = calcAverage(familyJohn.tips);
+familyMark.average = calcAverage(familyMark.tips);
+console.log(familyJohn, familyMark);
+
+if (familyJohn.average > familyMark.average) {
+  console.log(
+    familyJohn.fullName +
+      "'s family pays more tips, with an average in $" +
+      familyJohn.average
+  );
+} else {
+  console.log(
+    familyMark.fullName +
+      "'s family pays more tips, with an average in $" +
+      familyMark.average
+  );
+}
